@@ -3,10 +3,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-
 const prisma = new PrismaClient();
 
-export default async function handler(req: NextApiRequest, res: NextApiRequest) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
       const { email, name, password } = req.body;
@@ -16,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiRequest) 
         data: { email, name, password: hashedPassword },
       });
 
-      const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {
+      const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET as string, {
         expiresIn: '1h',
       });
 
