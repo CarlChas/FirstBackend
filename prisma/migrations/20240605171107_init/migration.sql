@@ -5,7 +5,7 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
-);
+)
 
 -- CreateTable
 CREATE TABLE "Pokemon" (
@@ -15,10 +15,10 @@ CREATE TABLE "Pokemon" (
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "Pokemon_pkey" PRIMARY KEY ("id")
-);
+)
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email")
 
 -- AddForeignKey
-ALTER TABLE "Pokemon" ADD CONSTRAINT "Pokemon_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Pokemon" ADD CONSTRAINT "Pokemon_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE
